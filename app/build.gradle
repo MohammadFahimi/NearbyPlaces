@@ -1,0 +1,83 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.mfahimi.nearbyplace"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayout"
+    implementation "androidx.core:core-ktx:$rootProject.core_ktx"
+
+    //support library
+    implementation "androidx.appcompat:appcompat:$rootProject.supportLibrary"
+    implementation "com.google.android.material:material:$rootProject.material"
+    implementation "com.ncapdevi:frag-nav:$rootProject.fragNav"
+
+    //Room
+    implementation "androidx.room:room-runtime:$rootProject.room"
+    implementation "androidx.room:room-ktx:$rootProject.room"
+    kapt "androidx.room:room-compiler:$rootProject.room"
+    kapt "android.arch.persistence.room:compiler:1.1.1"
+
+    //Retrofit & Moshi
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$rootProject.retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.loggingInterceptor"
+    implementation "com.squareup.moshi:moshi:$rootProject.moshi"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$rootProject.moshi"
+
+    //Play services
+    implementation 'com.google.android.gms:play-services-location:17.1.0'
+    implementation 'com.androidisland.ezpermission:ezpermission:0.1.4'
+
+    //Kotlin coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutine"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutine"
+
+    //koin
+    implementation "org.koin:koin-core:$rootProject.koin"
+    implementation "org.koin:koin-androidx-viewmodel:$rootProject.koin"
+
+    //android lifecycle extension
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycleKTX"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$rootProject.lifecycleKTX"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$rootProject.lifecycleKTX"
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
