@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LoadingView">
+        <attr name="lv_enableBackground" format="boolean" />
+        <attr name="lv_noView" format="boolean" />
+
+        <attr name="backgroundValue" format="enum">
+            <enum name="TRANSPARENT" value="0" />
+            <enum name="WHITE" value="1" />
+            <enum name="GREY" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="LoadingButton">
+        <attr name="lb_buttonColor" format="color" />
+        <attr name="lb_loaderColor" format="color" />
+        <attr name="lb_shadowColor" format="color" />
+        <attr name="lb_cornerRadius" format="dimension" />
+        <attr name="lb_shadowHeight" format="dimension" />
+        <attr name="lb_loaderWidth" format="dimension" />
+        <attr name="lb_loaderMargin" format="dimension" />
+        <attr name="lb_isShadowEnable" format="boolean" />
+        <attr name="lb_isCircular" format="boolean" />
+        <attr name="lb_isLoading" format="boolean" />
+    </declare-styleable>
+</resources>
