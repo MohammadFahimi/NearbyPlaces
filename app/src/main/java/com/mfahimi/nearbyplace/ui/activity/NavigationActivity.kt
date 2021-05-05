@@ -13,6 +13,7 @@ abstract class NavigationActivity : BaseActivity() {
                     allowStateLoss = true
                     build()
                 }
+            fragmentHideStrategy = FragNavController.HIDE
         }
     }
 
@@ -22,7 +23,7 @@ abstract class NavigationActivity : BaseActivity() {
     override fun onBackPressed() {
         val currentFrag = fragNavController.currentFrag
         var consumed = false
-        if (currentFrag != null && currentFrag is NavigationFragment) {
+        if (currentFrag != null && currentFrag is NavigationFragment<*>) {
             consumed = currentFrag.onBackPressed()
         }
         if (!consumed) {

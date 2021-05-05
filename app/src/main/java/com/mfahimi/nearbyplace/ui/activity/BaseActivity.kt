@@ -4,14 +4,13 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.annotation.AnimRes
-import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewbinding.ViewBinding
 
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    @get:LayoutRes
-    protected abstract val layoutResId: Int
+    protected abstract val _binding: ViewBinding
 
     @AnimRes
     protected open val startEnterAnim = 0
@@ -27,12 +26,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected open val screenOrientation: Int = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = screenOrientation
-        if (layoutResId != 0)
-            setContentView(layoutResId)
+        setContentView(_binding.root)
         initObjects(savedInstanceState)
         initViews(savedInstanceState)
     }
