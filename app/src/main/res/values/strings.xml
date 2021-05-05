@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">NearbyPlace</string>
+    <string name="client_ID">RENRZB3JQWKDYIIGFCGMVSIILNFSEVMHKANHBEQMKMUBEGP2</string>
+    <string name="client_Secret">5MKRUEZH43FAWLUDC4VFZ32O0WWH2PBYEAASRPD2P00B3FMP</string>
+
+    <string name="retry">تلاش مجدد</string>
+    <string name="title">title</string>
+    <string name="no_results">No results 😓</string>
+    <string name="address">آدرس</string>
+    <string name="error_msg">error_msg</string>
+    <string name="enableGps">فعال سازی مکان یاب</string>
+    <string name="enableGpsDesc">مکان یاب شما غیر فعال است. آیا مایل به فعال سازی آن هستید؟</string>
+    <string name="yes">بله</string>
+    <string name="no">خیر</string>
+    <string name="permissionDenied">دسترسی به موقعیت شما داده نشد</string>
+    <string name="showOnMap">مشاهده روی نقشه</string>
+    <string name="createdAt">ایجاد شده در</string>
+    <string name="city">شهر</string>
+    <string name="nearbyVenue">مکان های اطراف من</string>
+    <string name="ERROR_404">اطلاعات مورد نظر یافت نشد</string>
+    <string name="ERROR_500">خطای سرور! لطفا بعدا تلاش نمایید</string>
+    <string name="ERROR_DISCONNECTED">عدم اتصال به اینترنت</string>
+    <string name="ERROR_UNKNOWN">خطای ناشناخته</string>
+    <string name="ERROR_204">داده ای وجود ندارد</string>
+    <string name="ERROR_429">تعداد درخواست های مجاز شما به پایان رسید!!</string>
+    <string name="all_something_went_wrong">Something went wrong! please try again</string>
 </resources>
