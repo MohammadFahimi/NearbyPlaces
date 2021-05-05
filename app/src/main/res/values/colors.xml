@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primary">#283e4a</color>
+    <color name="primary_dark">#283e4a</color>
+
+    <color name="accent">#00BCD4</color>
+    <color name="colorPrimaryRipple">#CCCBCB</color>
+
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+
+    <color name="hint_text">#BDBDBD</color>
+
+    <color name="background">#F0F0F0</color>
+    <color name="activityBackground">#FAFAFA</color>
+
+    <color name="colorButtonNormal">#4CAF50</color>
+    <color name="windowBackground">#fff</color>
+
+    <color name="unpressed_color">#fff44336</color>
+    <color name="pressed_color">#ffd32f2f</color>
+    <color name="ripple_color">#ffeeeeee</color>
+    <color name="transparent">#00000000</color>
+    <color name="Black">#000</color>
+    <color name="white">#FFF</color>
+    <color name="fbutton_default_color">#3eadeb</color>
+    <color name="fbutton_default_shadow_color">#ff3493c8</color>
+    <color name="transparentBlack">#000</color>
+    <color name="loadingGrey">#7D333333</color>
+
 </resources>
