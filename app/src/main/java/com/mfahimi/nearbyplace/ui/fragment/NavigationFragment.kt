@@ -1,9 +1,11 @@
 package com.mfahimi.nearbyplace.ui.fragment
 
+import androidx.viewbinding.ViewBinding
 import com.mfahimi.nearbyplace.ui.activity.NavigationActivity
 import com.ncapdevi.fragnav.FragNavController
 
-abstract class NavigationFragment : BaseFragment() {
+abstract class NavigationFragment<T : ViewBinding>(layoutResId: Int) :
+    BaseFragment<T>(layoutResId) {
     /**
      * This is called on back button press, return true to consume it or leave it false
      */
