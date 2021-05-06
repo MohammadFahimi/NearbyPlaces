@@ -4,6 +4,7 @@ import android.content.Context
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +19,7 @@ import com.mfahimi.nearbyplace.ext.visible
 import com.mfahimi.nearbyplace.location.ApplicationLocationProvider
 import com.mfahimi.nearbyplace.location.LocationCallback
 import com.mfahimi.nearbyplace.model.LocationDataItem
+import com.mfahimi.nearbyplace.ui.adapter.AdapterDataModel
 import com.mfahimi.nearbyplace.ui.adapter.AdapterListener
 import com.mfahimi.nearbyplace.ui.adapter.LocationListAdapter
 import com.mfahimi.nearbyplace.ui.contract.OpenLocationSourceSettings
@@ -33,6 +35,10 @@ class LocationListFragment :
     private var pageIndex = PageStartIndex
     private lateinit var listAdapter: LocationListAdapter
     private var lastLocation: Location? = null
+    private var rvState: Parcelable? = null
+    private lateinit var mLayoutManager: LinearLayoutManager
+    private var isMoreDataAvailable = false
+    private val dataList = ArrayList<AdapterDataModel<LocationDataItem>>()
     private val locationManager by lazy {
         context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
     }
@@ -40,15 +46,15 @@ class LocationListFragment :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observeData()
+        lifecycleScope.launchWhenResumed { checkPermission() }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentLocationListBinding.bind(view)
+        binding.progressBar.gone()
         setResultListeners()
-        checkPermission()
         binding.toolbar.tvTitle.text = resources.getString(R.string.nearbyVenue)
-
         binding.toolbar.refresh.setOnClickListener {
             checkPermission()
         }
@@ -123,11 +129,13 @@ class LocationListFragment :
             override fun onItemClick(item: LocationDataItem) {
                 fragNavController().pushFragment(LocationDetailFragment.newInstance(item.id))
             }
-        }, ArrayList())
-
+        }, dataList)
+        listAdapter.setIsMoreDataAvailable(isMoreDataAvailable)
         binding.list.apply {
-            layoutManager = LinearLayoutManager(requireContext())
+            mLayoutManager = LinearLayoutManager(requireContext())
+            layoutManager = mLayoutManager
             adapter = listAdapter
+            mLayoutManager.onRestoreInstanceState(rvState)
         }
     }
 
@@ -158,11 +166,9 @@ class LocationListFragment :
     }
 
     private fun processLocationsData(data: List<LocationDataItem>) {
-        listAdapter.submitList(data)
-        if (data.isEmpty() || data.size < Constants.Paging.PAGE_SIZE)
-            listAdapter.setIsMoreDataAvailable(false)
-        else
-            listAdapter.setIsMoreDataAvailable(true)
+        binding.list.post { listAdapter.submitList(data) }
+        isMoreDataAvailable = !(data.isEmpty() || data.size < Constants.Paging.PAGE_SIZE)
+        listAdapter.setIsMoreDataAvailable(isMoreDataAvailable)
         if (isFirstPage() && data.isEmpty())
             showEmptyList()
 
@@ -204,6 +210,11 @@ class LocationListFragment :
             openLocationSourceSettings.launch(null)
         else
             binding.toolbar.refresh.visible()
+    }
+
+    override fun onDestroyView() {
+        rvState = mLayoutManager.onSaveInstanceState()
+        super.onDestroyView()
     }
 
     companion object {

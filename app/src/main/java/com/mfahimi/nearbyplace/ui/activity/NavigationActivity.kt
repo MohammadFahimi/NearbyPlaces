@@ -13,7 +13,6 @@ abstract class NavigationActivity : BaseActivity() {
                     allowStateLoss = true
                     build()
                 }
-            fragmentHideStrategy = FragNavController.HIDE
         }
     }
 
